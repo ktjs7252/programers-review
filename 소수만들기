@@ -1,0 +1,40 @@
+
+----------------------------------------------
+수정한 코드
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+
+// nums_len은 배열 nums의 길이입니다.
+int solution(int nums[], size_t nums_len) {
+    int answer = 0;
+    int i,j,k,sosu;
+    int result;
+    
+    for(i=0;i<nums_len-2;i++)
+    {
+        for(j=i+1;j<nums_len-1;j++)
+        {
+            for(k=j+1;k<nums_len;k++)
+            {
+                result=nums[i]+nums[j]+nums[k];
+                
+                for(sosu=2;sosu<=result;sosu++)
+                {
+                    if(result%sosu==0)
+                    {
+                        break;
+                    }
+                }
+                if(result==sosu)
+                    {
+                    answer++;
+                    }
+               
+            }
+        }
+    }
+    
+    return answer;
+}
