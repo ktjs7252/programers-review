@@ -1,0 +1,28 @@
+내 코드
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+long long solution(int a, int b) {
+    long long answer = 0;
+    int i;
+    if(b>=a)
+    {
+        for(i=a;i<=b;i++)
+    {
+        answer+=(long long)i;
+    
+    }
+        return answer;
+    }
+    
+    else
+    {
+        for(i=b;i<=a;i++)
+        {
+            answer+=(long long)i;
+        }
+        return answer;
+    }
+}
+
