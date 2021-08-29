@@ -1,0 +1,117 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+
+//for문을 돌면서 만약 숫자가 아니면 새로운 배열에 숫자로 바꿔서 저장
+//숫자면 그대로 배열에 저장
+//그 배열을 숫자로 바꿔서 answer
+// 파라미터로 주어지는 문자열은 const로 주어집니다. 변경하려면 문자열을 복사해서 사용하세요.
+int solution(const char* s) // s : 입력된 문자열은, const(상수)형 변수이기 때문에, 수정불가. 
+{
+    int s_idx, r_idx = 0, t_idx;
+    int s_length = strlen(s);
+    char ret[100]; // 변경될 문자열
+    char tmp[10] = {0}; // s 배열에서, 숫자(문자열)을 저장할 배열.
+
+    
+    // [0] ~ [length-1] 까지 
+    for(s_idx = 0 ; s_idx < s_length ; s_idx++)
+    {
+        t_idx = 0;
+        
+        // 1. s[i]를 체크해서, 문자 '0' <= s[i] && <= '9'면 바로 ret[]배열에 넣자.
+        if ('0' <= s[s_idx] && s[s_idx] <= '9')
+        {
+            ret[r_idx] = s[s_idx];
+            r_idx++;
+        }
+        else // 2. 만약 아니면, 숫자 나올때까지 계속 돌면서, 그녀석이 어떤 숫자(문자열)인지 체크하자.
+        {
+            while( !('0' <= s[s_idx] && s[s_idx] <= '9') )
+            {
+                if (s[s_idx] == '\0')
+                {
+                    ret[r_idx] = '\0';
+                    
+                    return atoi(ret); // char to integer
+                }
+                
+                tmp[t_idx] = s[s_idx];
+                t_idx++;
+                s_idx++;
+                
+                tmp[t_idx] = '\0'; 
+                
+                 if (strcmp(tmp, "zero") == 0)
+                 {
+                    ret[r_idx] = '0';
+                    r_idx++;
+                    t_idx = 0;
+                 }
+                 else if (strcmp(tmp, "one") == 0)
+                 {
+                    ret[r_idx] = '1';
+                    r_idx++;
+                     t_idx = 0;
+                 }
+                 else if (strcmp(tmp, "two") == 0)
+                 {
+                    ret[r_idx] = '2';
+                    r_idx++;
+                    t_idx = 0;
+                 }
+                 else if (strcmp(tmp, "three") == 0)
+                 {
+                     ret[r_idx] = '3';
+                     r_idx++;
+                     t_idx = 0;
+                 }
+                 else if (strcmp(tmp, "four") == 0)
+                 {
+                     ret[r_idx] = '4';
+                     r_idx++;
+                     t_idx = 0;
+                 }
+                 else if (strcmp(tmp, "five") == 0)
+                 {
+                     ret[r_idx] = '5';
+                     r_idx++;
+                     t_idx = 0;
+                 }
+                 else if (strcmp(tmp, "six") == 0)
+                 {
+                     ret[r_idx] = '6';
+                     r_idx++;
+                     t_idx = 0;
+                 }
+                 else if (strcmp(tmp, "seven") == 0)
+                 {
+                     ret[r_idx] = '7';
+                     r_idx++;
+                     t_idx = 0;
+                 }
+                 else if (strcmp(tmp, "eight") == 0)
+                 {
+                     ret[r_idx] = '8';
+                     r_idx++;
+                     t_idx = 0;
+                 }
+                 else if (strcmp(tmp, "nine") == 0)
+                 {
+                     ret[r_idx] = '9';
+                     r_idx++;
+                     t_idx = 0;
+                 }
+            }
+            
+            s_idx--; // t_idx = 3, s_idx = 3 -> for문에서 증감해주는것 감안해서, 
+        }    
+    }
+    ret[r_idx] = '\0';
+    
+    
+    return atoi(ret); // char to integer
+}
+
+// 인덱스관리가 힘들었다.. 코드가 깔끔하지 않기에 
