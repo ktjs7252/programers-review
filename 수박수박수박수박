@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+char* solution(int n) 
+{
+    // 리턴할 값은 메모리를 동적 할당해주세요.
+    char* answer = (char*)malloc(sizeof(char)*(3*n+1)); 
+    int i;
+    int r,k; //r은 몫 k는 나머지
+   
+    memset(answer, 0, sizeof(answer));
+    
+    r = n/2;
+    k = n%2;
+    
+    for(i = 1; i <= r; i++)
+    {
+        strcat(answer,"수박");
+    }
+    
+    if (k == 1)
+    {
+        strcat(answer,"수");
+    }
+    
+    return answer;
+}
+
+**배운 것
+한글은 아스키코드가아니라 유니코드인데 1바이트가 아니라 2~3바이트를 차지한다. 실제론 2바이트이지만 덤프를 방지하기위해 3바이트를 할당했고 문자열의 마지막에
+널문자를 넣어야 하므로 1바이트를 추가호 
