@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+bool solution(int x) {
+    bool answer = true;
+    int d_n=x;
+    int y=10; // 나눌수
+    int sum=0; // 합
+    
+   while(1)
+   {
+       if(x==0)
+       {
+           break;
+       }
+       sum+=x%10;
+       x=x/10;
+   }
+    if(d_n%sum!=0)
+    {
+        answer= false;
+    }
+    return answer;
+}
