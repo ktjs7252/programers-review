@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+// A_len은 배열 A의 길이입니다.
+// B_len은 배열 B의 길이입니다.
+int solution(int A[], size_t A_len, int B[], size_t B_len) {
+    int answer = 0;
+	int tmp;
+	int i, j;
+
+	for (i = 0; i < A_len; i++)
+	{
+		for (j = 0; j < A_len-1; j++)
+		{
+			if (A[j] > A[j + 1])
+			{
+				tmp = A[j];
+				A[j] = A[j + 1];
+				A[j + 1] = tmp;
+			}
+		}
+	}
+	for (i = 0; i < B_len; i++)
+	{
+		for (j = 0; j < B_len-1; j++)
+		{
+			if (B[j] < B[j + 1])
+			{
+				tmp = B[j];
+				B[j] = B[j + 1];
+				B[j + 1] = tmp;
+			}
+		}
+	}
+
+	for (i = 0; i < A_len; i++)
+	{
+		answer += A[i] * B[i];
+	}
+
+    
+    return answer;
+}
+// a배열 처음부터 끝까지 돌면서 제일 작은거 한개 추출
+// b배열 처음부터 끝까지 돌면서 제일 큰거 한개 추출
+//두개 곱하고 나머지 배열에서 같은거 반복
+// 추출하면 빈자릴 뭘로 채워야 하지? 아 뽑으면 -1로 초기화 해줘야겠다
+
+
+---------------------------------------
+테스트케이스는 맞았지만 효율성에서 점수를 받지 못했다
+아마도 버블정렬을 써서 그런것 같다.
+그것도 아니라면 굳이 정렬을 쓰지 않고 할 수 있다.
+다시 도전해야할 문제이다.
