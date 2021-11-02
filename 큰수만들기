@@ -1,0 +1,56 @@
+초기의 c코드
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#define MAX(a,b) a>b ? a:b
+
+// 파라미터로 주어지는 문자열은 const로 주어집니다. 변경하려면 문자열을 복사해서 사용하세요.
+char* solution(const char* number, int k) {
+    int length=0;
+    int number_idx=0;
+    int answer_idx=0;
+    int i,tmp;
+    while(number[length]!=NULL)
+    {
+        length++;
+    }
+    char* answer = (char*)malloc(sizeof(int)*length-k+1);
+    
+    while(k!=0)
+    {
+        tmp=0;
+        for(i=number_idx;i<k;i++)
+        {
+            tmp=MAX(tmp,number[i]);  //최댓값 찾기
+        }
+        
+        for(i=number_idx;i<k;i++)
+        {
+            if(number[i]==tmp)
+            {
+                answer[answer_idx++]=tmp;
+                number_idx=i;
+                k=k-i;
+                break;
+            }
+        }
+    }
+        
+    
+    
+    return answer;
+}
+
+//처음부터 k까지 젤 큰수를 찾는다
+//그게 첫번째이고 그 자리를 k에서 뺀다
+//그 뒤부터 나머지k까지 큰값을 찾는다 
+//이거 반복
+//근데 number중간부터 복사하는건 안되는구나? 그럼 어떻게 해야하지?
+
+--------------------------------------------------------------------------------------------
+정답인 코드
+
+
+
+
