@@ -1,0 +1,67 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+
+vector<string> solution(int n, vector<int> arr1, vector<int> arr2) {
+    vector<string> answer;
+    int num;
+    int tmp[30]={0};
+    int idx=n-1;
+    for(int i=0;i<n;i++)
+    {
+        idx=0;
+        num=arr1[i];
+        
+        while(num!=0)
+        {
+            tmp[idx++]=num%2;
+            num=num/2;
+        }
+        for(int j=0;j<n;j++)
+        {
+            if(tmp[i]==1)
+            {
+                answer[i][idx--]='#';
+            }
+            else if(tmp[i]==0)
+            {
+                answer[i][idx--]=' ';
+            }
+        }
+    }
+    
+     for(int i=0;i<n;i++)
+    {
+        idx=0;
+        num=arr2[i];
+        
+        while(num!=0)
+        {
+            tmp[idx++]=num%2;
+            num=num/2;
+        }
+        for(int j=0;j<n;j++)
+        {
+            if(tmp[i]==1)
+            {
+                answer[i][idx--]='#';
+            }
+            else if(tmp[i]==0 && answer[i][idx]!='#')
+            {
+                answer[i][idx--]=' ';
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    return answer;
+}
+
+//arr1을 변환해서 answer에 체크
+//arr2를 변환해서 answer에 체크
+//체크된거 답으로 변환
