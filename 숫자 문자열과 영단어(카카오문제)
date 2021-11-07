@@ -115,3 +115,88 @@ int solution(const char* s) // s : 입력된 문자열은, const(상수)형 변�
 }
 
 // 인덱스관리가 힘들었다.. 코드가 깔끔하지 않기에 
+
+--------------------------------------------------------------- 다시 푼코드
+#include <string>
+#include <vector>
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+
+using namespace std;
+
+char arr[100];
+char tmp[10];
+
+int solution(string s) {
+    int i,j;
+    int idx=0;
+    int tmp_idx=0;
+    
+    for(i=0;i<s.size();i++)
+    {
+        if(s[i]>='0' && s[i]<='9')
+        {
+            arr[idx++]=s[i];
+        }
+        else
+        {
+            tmp[tmp_idx++]=s[i];
+            tmp[tmp_idx]='\0';
+            
+            if(strcmp(tmp,"zero")==0)
+            {
+                arr[idx++]='0';
+                tmp_idx=0;
+            }
+            else if(strcmp(tmp,"one")==0)
+            {
+                arr[idx++]='1';
+                tmp_idx=0;
+            }
+             else if(strcmp(tmp,"two")==0)
+            {
+                arr[idx++]='2';
+                tmp_idx=0;
+            }
+             else if(strcmp(tmp,"three")==0)
+            {
+                arr[idx++]='3';
+                tmp_idx=0;
+            }
+             else if(strcmp(tmp,"four")==0)
+            {
+                arr[idx++]='4';
+                tmp_idx=0;
+            }
+             else if(strcmp(tmp,"five")==0)
+            {
+                arr[idx++]='5';
+                tmp_idx=0;
+            }
+             else if(strcmp(tmp,"six")==0)
+            {
+                arr[idx++]='6';
+                tmp_idx=0;
+            }
+             else if(strcmp(tmp,"seven")==0)
+            {
+                arr[idx++]='7';
+                tmp_idx=0;
+            }
+             else if(strcmp(tmp,"eight")==0)
+            {
+                arr[idx++]='8';
+                tmp_idx=0;
+            }
+             else if(strcmp(tmp,"nine")==0)
+            {
+                arr[idx++]='9';
+                tmp_idx=0;
+            }
+        }
+    }
+    
+    return atoi(arr);
+}
