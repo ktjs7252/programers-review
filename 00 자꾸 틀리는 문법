@@ -1,2 +1,12 @@
-atoi 쓸꺼면 배열을 char형으로 바꿔야한다.
-자꾸 int형 배열을 쓴다.
+1. atoi 쓸꺼면 배열을 char형으로 바꿔야한다.
+   자꾸 int형 배열을 쓴다.
+
+2. ex)    else if(strcmp(tmp,"seven")==0)
+            {
+                arr[idx++]='7';
+                tmp_idx=0;
+            }
+            
+ -> 위와 같은 코드에서 " "와 ' '를 구분하자
+
+3. 
