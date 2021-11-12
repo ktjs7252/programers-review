@@ -138,3 +138,130 @@ string solution(vector<int> numbers, string hand) {
     
     return answer;
 }
+
+
+-------------------------------------------------------두번째 시도
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int phone[4][3];
+int now_left_x=3;
+int now_left_y=0;
+int now_right_x=3;
+int now_right_y=2;
+int dx[]={-1,0,1,0};
+int dy[]={0,-1,0,1};
+
+void now(int x,int y,int num)
+{
+    int i,j;
+    
+    for(i=0;i<4;i++)
+    {
+        for(j=0;j<3;j++)
+        {
+            if(phone[i][j]==num)
+            {
+                x=i;
+                y=j;
+            }
+        }
+    }
+}
+
+int bfs(int x,int y,int num)
+{
+    bool visited[4][3] = {0};
+    visited[x][y] = true;
+    queue<pair<int, int>> q;
+    q.push({x, y});
+    int distance = 0;
+
+    if (phone[x][y] == num) {
+        return distance;
+    }
+
+    while (!q.empty()) {
+        int y = q.front().first; 
+        int x = q.front().second;
+        q.pop();
+        distance++;
+
+        for (int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i]; 
+
+            if (nx >= 0 && nx < 3 && ny >= 0 && ny < 4 && !visited[ny][nx]) { 
+                if (phone[ny][nx] == num) {  
+                    return distance;
+                }
+                else {
+                    visited[ny][nx] = true;
+                    q.push({ny, nx});
+                }
+            }
+        }
+    }
+    return distance;
+    
+}
+
+string solution(vector<int> numbers, string hand) {
+    char answer[1002];
+    int idx=1;
+    for(int i=0;i<4;i++)
+    {
+        for(int j=0;j<3;j++)
+        {
+            phone[i][j]=idx++;
+        }
+    }
+    phone[3][0]=-1;
+    phone[3][1]=0;
+    phone[3][2]=-1;
+    
+    for(int i=0;i<numbers.size();i++)
+    {
+        if(numbers[i]==1 || numbers[i]==4 || numbers[i]==7)
+        {
+            now(now_left_x,now_left_y,numbers[i]);
+            answer[i]='L';
+        }
+        else if(numbers[i]==3 || numbers[i]==6 || numbers[i]==9)
+        {
+            now(now_right_x,now_right_y,numbers[i]);
+            answer[i]='R';
+        }
+        else
+        {
+            if(bfs(now_left_x,now_left_y,numbers[i])<bfs(now_right_x,now_right_y,numbers[i]))
+            {
+                now(now_left_x,now_left_y,numbers[i]);
+                answer[i]='L';
+            }
+            else if(bfs(now_left_x,now_left_y,numbers[i])>bfs(now_right_x,now_right_y,numbers[i]))
+            {
+                now(now_right_x,now_right_y,numbers[i]);
+                answer[i]='R';
+            }
+            else if(bfs(now_left_x,now_left_y,numbers[i])==bfs(now_right_x,now_right_y,numbers[i]))
+            {
+                if(hand=="left")
+                {
+                     now(now_left_x,now_left_y,numbers[i]);
+                    answer[i]='L';
+                }
+                else
+                {
+                     now(now_right_x,now_right_y,numbers[i]);
+                    answer[i]='R';
+                }
+            }
+            
+        }
+    }
+   
+    return answer;
+}
