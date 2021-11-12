@@ -1,0 +1,105 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+int arr1[10002];
+int arr2[10002];
+int arr3[10002];
+int max(int x,int y)
+{
+    if(x>y)
+    {
+        return x;
+    }
+    else
+    {
+        return y;
+    }
+}
+
+vector<int> solution(vector<int> answers) {
+   vector<int> answer;
+    int idx=1;
+    int num1=0,num2=0,num3=0;
+    int tmp=0;
+    
+    for(int i=0;i<=answers.size();i++)
+    {
+        arr1[i]=idx++;
+        if(idx==6)
+        {
+            idx=1;
+        }
+    }
+    arr2[0]=2;
+    idx=1;
+    for(int i=1;i<answers.size();i++)
+    {
+        if(i%2==0)
+        {
+            arr2[i]=2;
+        }
+        else
+        {
+            arr2[i]=idx++;
+            if(idx==2)
+            {
+                idx=3;
+            }
+            if(idx==6)
+            {
+                idx=1;
+            }
+        }
+    }
+    idx=3;
+    for(int i=0;i<answers.size();)
+    {
+        if(idx==3)
+        {
+            arr3[i++]=3;
+            arr3[i++]=3;
+            idx=1;
+        }
+        arr3[i++]=idx;
+        arr3[i++]=idx++;
+        if(idx==6)
+        {
+            idx=3;
+        }
+        
+    }
+    
+    for(int i=0;i<answers.size();i++)
+    {
+        if(answers[i]==arr1[i])
+        {
+            num1++;
+            tmp=max(tmp,num1);
+        }
+        if(answers[i]==arr2[i])
+        {
+            num2++;
+             tmp=max(tmp,num1);
+        }
+        if(answers[i]==arr3[i])
+        {
+            num3++;
+             tmp=max(tmp,num1);
+        }
+    }
+    idx=0;
+    if(tmp==num1)
+    {
+        answer[idx++]=1;
+    }
+    if(tmp==num2)
+    {
+        answer[idx++]=2;
+    }
+    if(tmp==num3)
+    {
+        answer[idx++]=3;
+    }
+    return answer;
+}
