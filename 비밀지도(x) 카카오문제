@@ -159,4 +159,53 @@ vector<string> solution(int n, vector<int> arr1, vector<int> arr2) {
 
     return answer;
 }
+--------------------------------------------------------
+4번쨰
+#include <string>
+#include <vector>
 
+using namespace std;
+
+vector<string> solution(int n, vector<int> arr1, vector<int> arr2) {
+    vector<string> answer;
+    string s;
+    int map[n][n];
+    
+    for(int i=0;i<n;i++)
+    {
+        int check_1=arr1[i];
+        int check_2=arr2[i];
+        
+        for(int j=n-1;j>=0;j--)
+        {
+            if(check_1%2==0 && check_2%2==0)
+            {
+                map[i][j]=0;
+            }
+            else
+            {
+                map[i][j]=1;
+            }
+            check_1=check_1/2;
+            check_2=check_2/2;
+        }
+    }
+    
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            if(map[i][j]==0)
+            {
+                s+=' ';
+            }
+            else if(map[i][j]==1)
+            {
+                s+='#';
+            }
+        }
+        answer.push_back(s);
+        s.clear();
+    }
+    return answer;
+}
