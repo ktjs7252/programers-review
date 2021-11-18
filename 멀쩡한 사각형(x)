@@ -29,7 +29,7 @@ long long solution(int w, int h) {
 }
 
 
------------------------------ 머가 
+----------------------------- 머가 다른걸까
 using namespace std;
 
 long long solution(int w, int h)
