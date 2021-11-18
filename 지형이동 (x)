@@ -1,0 +1,63 @@
+#include <string>
+#include <vector>
+#define min(a,b) a<b ? a:b
+
+using namespace std;
+int visited[301][301];
+int color;
+int dx[]={-1,0,1,0};
+int dy[]={0,-1,0,1};
+int size;
+int tmp;
+
+void dfs(int x,y)
+{
+    int nx,ny;
+    visited[x][y]=color;
+    
+    for(i=0;i<4;i++)
+    {
+        nx=x+dx[i];
+        ny=y+dy[i];
+        
+        if(nx>=0 && nx<size && ny>=0 && ny<size)
+        {
+            if(abs(land[nx][ny]-land[x][y])<=height )
+            {
+                dfs(nx,ny);
+            }
+        }
+    }
+}
+
+void solve(int i,int j,int color_idx)
+{
+    
+}
+
+int solution(vector<vector<int>> land, int height) {
+    int answer = 0;
+    int tmp=1;
+    size=land.size();
+    for(int i=0;i<land.size();i++)
+    {
+        for(int j=0;j<land[0].size();j++)
+        {
+            if(visited[i][j]==0)
+            {
+                color++;
+                dfs(i,j);
+            }
+        }
+    }
+    
+    for(int i=0;i<land.size();i++)
+    {
+        for(int j=0;j<land[0].size();j++)
+        {
+            
+        }
+    }
+    
+    return answer;
+}
