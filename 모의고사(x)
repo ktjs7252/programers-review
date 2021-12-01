@@ -209,3 +209,63 @@ vector<int> solution(vector<int> answers) {
     
     return answer;
 }
+
+
+---------------------------------------------
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int arr1[5]={1,2,3,4,5};
+int arr2[8]={2,1,2,3,2,4,2,5};
+int arr3[10]={3,3,1,1,2,2,4,4,5,5};
+int tmp[4];
+
+int max(int a,int b)
+{
+    if(a>b)
+    {
+        return a;
+    }
+    return b;
+}
+
+vector<int> solution(vector<int> answers) {
+    vector<int> answer;
+    int max_answer=0;
+
+    for(int i=0;i<answer.size();i++)
+    {
+        if(arr1[i%5]==answer[i])
+        {
+            tmp[1]++;
+        }
+        if(arr2[i%8]==answer[i])
+        {
+            tmp[2]++;
+        }
+        if(arr3[i&10]==answer[i])
+        {
+            tmp[3]++;
+        }
+    }
+    
+    max_answer=max(tmp[1],max(tmp[2],tmp[3]));
+    int idx=0;
+    for(int i=1;i<=3;i++)
+    {
+        if(max_answer=tmp[i])
+        {
+            answer[idx]=i;
+            idx++;
+        }
+    }
+    
+    return answer;
+}
+
+
+
+
+
