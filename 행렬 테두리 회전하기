@@ -1,0 +1,57 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int arr[101][101];
+
+vector<int> solution(int rows, int columns, vector<vector<int>> queries) {
+    vector<int> answer;
+    int x=1;
+    for(int i=1;i<=rows;i++)
+    {
+        for(int j=1;j<=columns;j++)
+        {
+            arr[i][j]=x++;
+        }
+    }
+    
+    
+    for(int k=0;k<queries.size();k++)
+    {
+        int tmp=arr[queries[k][0]][queries[k][1]];
+        int mini=arr[queries[k][0]][queries[k][1]];
+        
+        //왼쪽
+        for(int i=queries[k][0];i<queries[k][2];i++)
+        {
+            arr[i][queries[k][1]]=arr[i+1][queries[k][1]];
+            mini=min(mini,arr[i][queries[k][1]]);
+        }
+        //아래쪽
+        for(int i=queries[k][1];i<queries[k][3];i++)
+        {
+            arr[queries[k][2]][i]=arr[queries[k][2]][i+1];
+            mini=min(mini,arr[queries[k][2]][i]);
+        }
+        //오른쪽
+       for(int i=queries[k][2];i>queries[k][0];i--)
+        {
+            arr[i][queries[k][3]]=arr[i-1][queries[k][3]];
+            mini=min(mini,arr[i][queries[k][3]]);
+         }
+        //위쪽
+        for(int i=queries[k][3];i>queries[k][1];i--)
+        {
+            arr[queries[k][0]][i]=arr[queries[k][0]][i-1];
+            mini=min(mini,arr[queries[k][0]][i]);
+        }           
+        
+                   arr[queries[k][0]][(queries[k][1])+1]=tmp;
+                   
+                   answer.push_back(mini);
+                   
+    }
+    
+    return answer;
+}
